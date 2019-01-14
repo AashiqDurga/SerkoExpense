@@ -10,6 +10,7 @@
       <e p="packages" t="ExcludeRecursive" />
       <e p="SerkoExpense.Domain.Tests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="EmailDataExtractionTests.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
@@ -19,7 +20,6 @@
           </e>
         </e>
         <e p="SerkoExpense.Domain.Tests.csproj" t="IncludeRecursive" />
-        <e p="UnitTest1.cs" t="Include" />
       </e>
       <e p="SerkoExpense.sln" t="IncludeFlat" />
     </e>
