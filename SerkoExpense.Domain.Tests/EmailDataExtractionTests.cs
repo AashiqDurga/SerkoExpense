@@ -1,5 +1,3 @@
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using Xunit;
 
 namespace SerkoExpense.Domain.Tests
@@ -10,6 +8,7 @@ namespace SerkoExpense.Domain.Tests
         public void GivenAnEmailWhenProcessingTheContentThenExtractExpenseInformation()
         {
             var expected = new Expense(){CostCentre = "DEV002", Total = 1024.01m, PaymentMethod = "personal card"};
+            
             var email = @"Hi Yvaine,
             Please create an expense claim for the below. Relevant details are marked up as
                 requested…
@@ -35,27 +34,5 @@ namespace SerkoExpense.Domain.Tests
             Assert.Equal(expected.PaymentMethod, result.PaymentMethod);
             Assert.Equal(expected.Total, result.Total);
         }
-    }
-
-    public class EmailDataExtractor
-    {
-        public Expense Extract(string email)
-        {
-            var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
-
-            var expenseXml = XDocument.Parse(expenseData);
-            var costCentre = expenseXml.Root.Element("cost_centre").Value;
-            var total = decimal.Parse(expenseXml.Root.Element("total").Value);
-            var paymentMethod = expenseXml.Root.Element("payment_method").Value;
-
-            return new Expense() {CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod};
-        }
-    }
-
-    public class Expense
-    {
-        public string CostCentre { get; set; }
-        public decimal Total { get; set; }
-        public string PaymentMethod { get; set; }
     }
 }

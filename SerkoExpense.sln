@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Domain.Tests", "SerkoExpense.Domain.Tests\SerkoExpense.Domain.Tests.csproj", "{CCC40624-EC13-48DD-8AB8-F2E98E7C897E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Domain", "SerkoExpense.Domain\SerkoExpense.Domain.csproj", "{67263138-1A22-4E7F-9E2B-6B4D89871654}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{CCC40624-EC13-48DD-8AB8-F2E98E7C897E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCC40624-EC13-48DD-8AB8-F2E98E7C897E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCC40624-EC13-48DD-8AB8-F2E98E7C897E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67263138-1A22-4E7F-9E2B-6B4D89871654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67263138-1A22-4E7F-9E2B-6B4D89871654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67263138-1A22-4E7F-9E2B-6B4D89871654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67263138-1A22-4E7F-9E2B-6B4D89871654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
