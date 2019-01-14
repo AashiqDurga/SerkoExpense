@@ -2,6 +2,7 @@ using System;
 using FluentAssertions;
 using SerkoExpense.Domain.Application;
 using Xunit;
+using Xunit.Sdk;
 
 namespace SerkoExpense.Domain.Tests
 {
@@ -45,5 +46,6 @@ namespace SerkoExpense.Domain.Tests
 
             Assert.Throws<FormatException>(() => _expenseClaimFactory.CreateExpenseClaimFrom(expenseInput));
         }
+
     }
 }
