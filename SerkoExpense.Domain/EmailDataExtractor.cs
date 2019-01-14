@@ -7,7 +7,7 @@ namespace SerkoExpense.Domain
 {
     public class EmailDataExtractor
     {
-        public Expense Extract(string email)
+        public ExpenseClaim Extract(string email)
         {
             var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
             var vendorData = Regex.Match(email, "<vendor>.*</vendor>", RegexOptions.Singleline).Value;
@@ -24,15 +24,22 @@ namespace SerkoExpense.Domain
 
             var date = XDocument.Parse(dateData).Element("date").Value;
 
-            Expense expense;
+            return ValidateExpenseClaim(date, costCentre, total, paymentMethod, vendor, description);
+        }
+
+        private static ExpenseClaim ValidateExpenseClaim(string date, string costCentre, decimal total, string paymentMethod,
+            string vendor, string description)
+        {
+            ExpenseClaim expenseClaim;
             try
             {
-                string format = "dddd d MMMM yyyy";
-                var foo = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
-                expense = new Expense
+                const string supportedDateFormat = "dddd d MMMM yyyy";
+                var dateTime = DateTime.ParseExact(date, supportedDateFormat, CultureInfo.InvariantCulture);
+                expenseClaim = new ExpenseClaim
                 {
-                    CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod, Vendor = vendor,
-                    Description = description, Date = foo
+                    ExpenseInformation = new Expense
+                        {CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod},
+                    Vendor = vendor, Description = description, Date = dateTime
                 };
             }
             catch (Exception e)
@@ -40,7 +47,7 @@ namespace SerkoExpense.Domain
                 throw e;
             }
 
-            return expense;
+            return expenseClaim;
         }
     }
 }

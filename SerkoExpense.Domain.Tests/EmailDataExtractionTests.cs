@@ -8,10 +8,11 @@ namespace SerkoExpense.Domain.Tests
         [Fact]
         public void GivenAnEmailWithCorrectDataWhenProcessingTheContentThenExtractExpenseInformation()
         {
-            var expected = new Expense()
+            var expected = new ExpenseClaim()
             {
-                CostCentre = "DEV002", Total = 1024.01m, PaymentMethod = "personal card", Vendor = "Viaduct Steakhouse",
-                Description = "development team’s project end celebration dinner", Date = new DateTime(2017,04,27)
+                ExpenseInformation = new Expense() {CostCentre = "DEV002", Total = 1024.01m, PaymentMethod = "personal card"},
+                Vendor = "Viaduct Steakhouse", Description = "development team’s project end celebration dinner",
+                Date = new DateTime(2017, 04, 27)
             };
 
             var email = @"Hi Yvaine,
@@ -35,9 +36,9 @@ namespace SerkoExpense.Domain.Tests
             var dataExtractor = new EmailDataExtractor();
             var result = dataExtractor.Extract(email);
 
-            Assert.Equal(expected.CostCentre, result.CostCentre);
-            Assert.Equal(expected.PaymentMethod, result.PaymentMethod);
-            Assert.Equal(expected.Total, result.Total);
+            Assert.Equal(expected.ExpenseInformation.CostCentre, result.ExpenseInformation.CostCentre);
+            Assert.Equal(expected.ExpenseInformation.PaymentMethod, result.ExpenseInformation.PaymentMethod);
+            Assert.Equal(expected.ExpenseInformation.Total, result.ExpenseInformation.Total);
             Assert.Equal(expected.Vendor, result.Vendor);
             Assert.Equal(expected.Description, result.Description);
             Assert.Equal(expected.Date, result.Date);
