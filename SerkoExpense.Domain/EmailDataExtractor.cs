@@ -22,12 +22,25 @@ namespace SerkoExpense.Domain
             var vendor = XDocument.Parse(vendorData).Element("vendor").Value;
             var description = XDocument.Parse(descriptionData).Element("description").Value;
 
-            
-            return new Expense
+            var date = XDocument.Parse(dateData).Element("date").Value;
+
+            Expense expense;
+            try
             {
-                CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod, Vendor = vendor,
-                Description = description
-            };
+                string format = "dddd d MMMM yyyy";
+                var foo = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
+                expense = new Expense
+                {
+                    CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod, Vendor = vendor,
+                    Description = description, Date = foo
+                };
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return expense;
         }
     }
 }
