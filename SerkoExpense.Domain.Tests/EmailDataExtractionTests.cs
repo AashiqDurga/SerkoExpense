@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace SerkoExpense.Domain.Tests
@@ -7,7 +8,8 @@ namespace SerkoExpense.Domain.Tests
         [Fact]
         public void GivenAnEmailWhenProcessingTheContentThenExtractExpenseInformation()
         {
-            var expected = new Expense(){CostCentre = "DEV002", Total = 1024.01m, PaymentMethod = "personal card"};
+            var expected = new Expense(){CostCentre = "DEV002", Total = 1024.01m, PaymentMethod = "personal card", Vendor ="Viaduct Steakhouse",
+                Description = "development team’s project end celebration dinner"};
             
             var email = @"Hi Yvaine,
             Please create an expense claim for the below. Relevant details are marked up as
@@ -33,6 +35,8 @@ namespace SerkoExpense.Domain.Tests
             Assert.Equal(expected.CostCentre, result.CostCentre);
             Assert.Equal(expected.PaymentMethod, result.PaymentMethod);
             Assert.Equal(expected.Total, result.Total);
+            Assert.Equal(expected.Vendor, result.Vendor);
+            Assert.Equal(expected.Description, result.Description);
         }
     }
 }

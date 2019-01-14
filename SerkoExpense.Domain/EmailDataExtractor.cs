@@ -1,3 +1,5 @@
+using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
@@ -8,13 +10,24 @@ namespace SerkoExpense.Domain
         public Expense Extract(string email)
         {
             var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
+            var vendorData = Regex.Match(email, "<vendor>.*</vendor>", RegexOptions.Singleline).Value;
+            var descriptionData = Regex.Match(email, "<description>.*</description>", RegexOptions.Singleline).Value;
+            var dateData = Regex.Match(email, "<date>.*</date>", RegexOptions.Singleline).Value;
 
             var expenseXml = XDocument.Parse(expenseData);
             var costCentre = expenseXml.Root.Element("cost_centre").Value;
             var total = decimal.Parse(expenseXml.Root.Element("total").Value);
             var paymentMethod = expenseXml.Root.Element("payment_method").Value;
 
-            return new Expense() {CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod};
+            var vendor = XDocument.Parse(vendorData).Element("vendor").Value;
+            var description = XDocument.Parse(descriptionData).Element("description").Value;
+
+            
+            return new Expense
+            {
+                CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod, Vendor = vendor,
+                Description = description
+            };
         }
     }
 }
