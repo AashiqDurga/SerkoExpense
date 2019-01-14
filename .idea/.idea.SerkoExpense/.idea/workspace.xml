@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffa8986e-77ff-41b1-bbc9-cd791a60e995" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SerkoExpense/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SerkoExpense/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SerkoExpense/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SerkoExpense/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SerkoExpense.Domain.Tests/EmailDataExtractionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SerkoExpense.Domain.Tests/EmailDataExtractionTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SerkoExpense.Domain.Tests/ExpenseClaimFactoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SerkoExpense.Domain.Tests/ExpenseClaimFactoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SerkoExpense.Domain/Application/ExpenseClaimFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SerkoExpense.Domain/Application/ExpenseClaimFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SerkoExpense.Domain/Domain/ExpenseClaim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SerkoExpense.Domain/Domain/ExpenseClaim.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,18 +33,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+            <state relative-caret-position="151">
+              <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
               <folding>
-                <marker date="1547491087389" expanded="true" signature="6:133" ph="..." />
-                <marker date="1547491087389" expanded="true" signature="203:2483" ph="{...}" />
-                <marker date="1547491087389" expanded="true" signature="241:2481" ph="{...}" />
-                <marker date="1547491087389" expanded="true" signature="302:1572" ph="{...}" />
-                <marker date="1547491087389" expanded="true" signature="1348:1522" ph="{...}" />
-                <marker date="1547491087389" expanded="true" signature="1758:2475" ph="{...}" />
-                <marker date="1547491087389" expanded="true" signature="1823:2346" ph="{...}" />
-                <marker date="1547491087389" expanded="true" signature="2082:2331" ph="{...}" />
-                <marker date="1547491087389" expanded="true" signature="2378:2431" ph="{...}" />
+                <marker date="1547491524517" expanded="true" signature="6:130" ph="..." />
+                <marker date="1547491524517" expanded="true" signature="161:1538" ph="{...}" />
+                <marker date="1547491524517" expanded="true" signature="199:1536" ph="{...}" />
+                <marker date="1547491524517" expanded="true" signature="260:1530" ph="{...}" />
+                <marker date="1547491524517" expanded="true" signature="1306:1480" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -73,17 +67,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain.Tests/ExpenseClaimFactoryTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+            <state relative-caret-position="90">
+              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
               <folding>
-                <marker date="1547491447105" expanded="true" signature="6:89" ph="..." />
-                <marker date="1547491447105" expanded="true" signature="126:1714" ph="{...}" />
-                <marker date="1547491447105" expanded="true" signature="170:1712" ph="{...}" />
-                <marker date="1547491447105" expanded="true" signature="349:1127" ph="{...}" />
-                <marker date="1547491447105" expanded="true" signature="416:673" ph="{...}" />
-                <marker date="1547491447105" expanded="true" signature="753:956" ph="{...}" />
-                <marker date="1547491447105" expanded="true" signature="1247:1706" ph="{...}" />
-                <marker date="1547491447105" expanded="true" signature="1323:1524" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="6:89" ph="..." />
+                <marker date="1547492116556" expanded="true" signature="126:1624" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="170:1622" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="286:368" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="455:1119" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="558:689" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="757:960" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="1222:1616" ph="{...}" />
+                <marker date="1547492116556" expanded="true" signature="1298:1499" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -92,18 +87,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/Application/ExpenseClaimFactory.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+            <state relative-caret-position="120">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
-                <marker date="1547490748269" expanded="false" signature="6:41" ph="..." />
-                <marker date="1547490748269" expanded="true" signature="84:1287" ph="{...}" />
-                <marker date="1547490748269" expanded="true" signature="123:1285" ph="{...}" />
-                <marker date="1547490748269" expanded="true" signature="208:773" ph="{...}" />
-                <marker date="1547490748269" expanded="true" signature="280:436" ph="{...}" />
-                <marker date="1547490748269" expanded="true" signature="554:728" ph="{...}" />
-                <marker date="1547490748269" expanded="true" signature="851:1279" ph="{...}" />
-                <marker date="1547490748269" expanded="true" signature="908:1154" ph="{...}" />
-                <marker date="1547490748269" expanded="true" signature="1186:1239" ph="{...}" />
+                <marker date="1547492057060" expanded="false" signature="6:41" ph="..." />
+                <marker date="1547492057060" expanded="true" signature="84:1083" ph="{...}" />
+                <marker date="1547492057060" expanded="true" signature="123:1081" ph="{...}" />
+                <marker date="1547492057060" expanded="true" signature="208:569" ph="{...}" />
+                <marker date="1547492057060" expanded="true" signature="407:524" ph="{...}" />
+                <marker date="1547492057060" expanded="true" signature="647:1075" ph="{...}" />
+                <marker date="1547492057060" expanded="true" signature="704:950" ph="{...}" />
+                <marker date="1547492057060" expanded="true" signature="982:1035" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -112,11 +106,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/Domain/ExpenseClaim.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+            <state relative-caret-position="90">
+              <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
               <folding>
-                <marker date="1547457317409" expanded="true" signature="44:280" ph="{...}" />
-                <marker date="1547457317409" expanded="true" signature="76:278" ph="{...}" />
+                <marker date="1547491982869" expanded="true" signature="44:481" ph="{...}" />
+                <marker date="1547491982869" expanded="true" signature="76:479" ph="{...}" />
+                <marker date="1547491982869" expanded="true" signature="166:293" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -154,9 +149,10 @@
         <option value="$PROJECT_DIR$/SerkoExpense.Domain/Expense.cs" />
         <option value="$PROJECT_DIR$/SerkoExpense.Domain/ExpenseClaim.cs" />
         <option value="$PROJECT_DIR$/SerkoExpense.Domain/SerkoExpense.Domain.csproj" />
-        <option value="$PROJECT_DIR$/SerkoExpense.Domain/Application/ExpenseClaimFactory.cs" />
-        <option value="$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs" />
         <option value="$PROJECT_DIR$/SerkoExpense.Domain.Tests/EmailDataExtractionTests.cs" />
+        <option value="$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs" />
+        <option value="$PROJECT_DIR$/SerkoExpense.Domain/Domain/ExpenseClaim.cs" />
+        <option value="$PROJECT_DIR$/SerkoExpense.Domain/Application/ExpenseClaimFactory.cs" />
         <option value="$PROJECT_DIR$/SerkoExpense.Domain.Tests/ExpenseClaimFactoryTests.cs" />
       </list>
     </option>
@@ -192,6 +188,12 @@
               <item name="SerkoExpense" type="24d0babc:SolutionExplorerModelNode" />
               <item name="SerkoExpense.Domain" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Application" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SerkoExpense" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SerkoExpense.Domain" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Domain" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
@@ -241,12 +243,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547449799974</updated>
-      <workItem from="1547449801530" duration="10383000" />
+      <workItem from="1547449801530" duration="11056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10383000" />
+    <option name="totallyTimeSpent" value="11056000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -259,6 +261,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="955" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Image Layers" />
@@ -268,11 +271,11 @@
       <window_info anchor="bottom" id="NuGet" weight="0.32908458" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Unit Tests" visible="true" weight="0.32908458" />
+      <window_info anchor="bottom" id="Unit Tests" weight="0.32908458" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Build" weight="0.32908458" />
+      <window_info active="true" anchor="bottom" id="Build" visible="true" weight="0.32908458" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -300,19 +303,6 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs</url>
-          <line>12</line>
-          <properties documentPath="$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs" initialLine="10">
-            <startOffsets>
-              <option value="311" />
-            </startOffsets>
-            <endOffsets>
-              <option value="312" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -337,56 +327,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/Domain/ExpenseClaim.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding>
-            <marker date="1547457317409" expanded="true" signature="44:280" ph="{...}" />
-            <marker date="1547457317409" expanded="true" signature="76:278" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/Application/ExpenseClaimFactory.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <marker date="1547490748269" expanded="false" signature="6:41" ph="..." />
-            <marker date="1547490748269" expanded="true" signature="84:1287" ph="{...}" />
-            <marker date="1547490748269" expanded="true" signature="123:1285" ph="{...}" />
-            <marker date="1547490748269" expanded="true" signature="208:773" ph="{...}" />
-            <marker date="1547490748269" expanded="true" signature="280:436" ph="{...}" />
-            <marker date="1547490748269" expanded="true" signature="554:728" ph="{...}" />
-            <marker date="1547490748269" expanded="true" signature="851:1279" ph="{...}" />
-            <marker date="1547490748269" expanded="true" signature="908:1154" ph="{...}" />
-            <marker date="1547490748269" expanded="true" signature="1186:1239" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
-          <folding>
-            <marker date="1547491087389" expanded="true" signature="6:133" ph="..." />
-            <marker date="1547491087389" expanded="true" signature="203:2483" ph="{...}" />
-            <marker date="1547491087389" expanded="true" signature="241:2481" ph="{...}" />
-            <marker date="1547491087389" expanded="true" signature="302:1572" ph="{...}" />
-            <marker date="1547491087389" expanded="true" signature="1348:1522" ph="{...}" />
-            <marker date="1547491087389" expanded="true" signature="1758:2475" ph="{...}" />
-            <marker date="1547491087389" expanded="true" signature="1823:2346" ph="{...}" />
-            <marker date="1547491087389" expanded="true" signature="2082:2331" ph="{...}" />
-            <marker date="1547491087389" expanded="true" signature="2378:2431" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain.Tests/SerkoExpense.Domain.Tests.csproj">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain.Tests/EmailDataExtractionTests.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -401,19 +341,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/EmailDataExtractor.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="12" column="67" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
+          <folding>
+            <marker date="1547491524517" expanded="true" signature="6:130" ph="..." />
+            <marker date="1547491524517" expanded="true" signature="161:1538" ph="{...}" />
+            <marker date="1547491524517" expanded="true" signature="199:1536" ph="{...}" />
+            <marker date="1547491524517" expanded="true" signature="260:1530" ph="{...}" />
+            <marker date="1547491524517" expanded="true" signature="1306:1480" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/Domain/ExpenseClaim.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+          <folding>
+            <marker date="1547491982869" expanded="true" signature="44:481" ph="{...}" />
+            <marker date="1547491982869" expanded="true" signature="76:479" ph="{...}" />
+            <marker date="1547491982869" expanded="true" signature="166:293" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain.Tests/SerkoExpense.Domain.Tests.csproj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain/Application/ExpenseClaimFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <marker date="1547492057060" expanded="false" signature="6:41" ph="..." />
+            <marker date="1547492057060" expanded="true" signature="84:1083" ph="{...}" />
+            <marker date="1547492057060" expanded="true" signature="123:1081" ph="{...}" />
+            <marker date="1547492057060" expanded="true" signature="208:569" ph="{...}" />
+            <marker date="1547492057060" expanded="true" signature="407:524" ph="{...}" />
+            <marker date="1547492057060" expanded="true" signature="647:1075" ph="{...}" />
+            <marker date="1547492057060" expanded="true" signature="704:950" ph="{...}" />
+            <marker date="1547492057060" expanded="true" signature="982:1035" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SerkoExpense.Domain.Tests/ExpenseClaimFactoryTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        <state relative-caret-position="90">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
           <folding>
-            <marker date="1547491447105" expanded="true" signature="6:89" ph="..." />
-            <marker date="1547491447105" expanded="true" signature="126:1714" ph="{...}" />
-            <marker date="1547491447105" expanded="true" signature="170:1712" ph="{...}" />
-            <marker date="1547491447105" expanded="true" signature="349:1127" ph="{...}" />
-            <marker date="1547491447105" expanded="true" signature="416:673" ph="{...}" />
-            <marker date="1547491447105" expanded="true" signature="753:956" ph="{...}" />
-            <marker date="1547491447105" expanded="true" signature="1247:1706" ph="{...}" />
-            <marker date="1547491447105" expanded="true" signature="1323:1524" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="6:89" ph="..." />
+            <marker date="1547492116556" expanded="true" signature="126:1624" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="170:1622" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="286:368" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="455:1119" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="558:689" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="757:960" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="1222:1616" ph="{...}" />
+            <marker date="1547492116556" expanded="true" signature="1298:1499" ph="{...}" />
           </folding>
         </state>
       </provider>

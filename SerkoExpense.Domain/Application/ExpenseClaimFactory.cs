@@ -5,36 +5,29 @@ namespace SerkoExpense.Domain.Application
 {
     public class ExpenseClaimFactory
     {
-        public ExpenseClaim CreateExpenseClaim(ExpenseClaimInput expenseInput)
+        public ExpenseClaim CreateExpenseClaimFrom(ExpenseClaimInput expenseInput)
         {
-            var expenseInformation = new Expense
+            var dateTime = ValidateDate(expenseInput.Date);
+            var expenseClaim = new ExpenseClaim(expenseInput.CostCentre, expenseInput.Total, expenseInput.PaymentMethod)
             {
-                CostCentre = expenseInput.CostCentre, Total = expenseInput.Total,
-                PaymentMethod = expenseInput.PaymentMethod
-            };
-
-            var dateTime = ValidateDate(expenseInput);
-            var expenseClaim = new ExpenseClaim
-            {
-                Expense = expenseInformation, Vendor = expenseInput.Vendor, Date = dateTime,
-                Description = expenseInput.Description
+                Vendor = expenseInput.Vendor, Date = dateTime, Description = expenseInput.Description
             };
 
             return expenseClaim;
         }
 
-        private static DateTime ValidateDate(ExpenseClaimInput expenseInput)
+        private static DateTime ValidateDate(string date)
         {
             DateTime dateTime;
             try
             {
                 const string supportedDateFormat = "dddd d MMMM yyyy";
-                dateTime = DateTime.ParseExact((string) expenseInput.Date, supportedDateFormat,
+                dateTime = DateTime.ParseExact(date, supportedDateFormat,
                     CultureInfo.InvariantCulture);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                throw e;
+                throw exception;
             }
 
             return dateTime;
