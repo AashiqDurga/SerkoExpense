@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -15,8 +16,13 @@ namespace SerkoExpense.Domain
             var dateData = Regex.Match(email, "<date>.*</date>", RegexOptions.Singleline).Value;
 
             var expenseXml = XDocument.Parse(expenseData);
+            var total = expenseXml.Root.Element("total")?.Value;
+            if (string.IsNullOrEmpty(total))
+            {
+                throw new InvalidDataException();
+            }
+            
             var costCentre = expenseXml.Root.Element("cost_centre")?.Value ?? "UNKNOWN";
-            var total = decimal.Parse(expenseXml.Root.Element("total").Value);
             var paymentMethod = expenseXml.Root.Element("payment_method").Value;
 
             var vendor = XDocument.Parse(vendorData).Element("vendor").Value;
@@ -26,7 +32,7 @@ namespace SerkoExpense.Domain
 
             var expenseClaimInput = new ExpenseClaimInput
             {
-                CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod, Vendor = vendor,
+                CostCentre = costCentre, Total = decimal.Parse(total), PaymentMethod = paymentMethod, Vendor = vendor,
                 Description = description, Date = date
             };
 
