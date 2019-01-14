@@ -9,6 +9,10 @@
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="SerkoExpense.Domain" t="IncludeRecursive">
+        <e p="Application" t="Include">
+          <e p="ExpenseClaimFactory.cs" t="Include" />
+          <e p="ExpenseClaimInput.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain" t="Include">
           <e p="Expense.cs" t="Include" />

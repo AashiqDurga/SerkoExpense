@@ -1,13 +1,13 @@
-using System;
-using System.Globalization;
+using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using SerkoExpense.Domain.Application;
 
 namespace SerkoExpense.Domain
 {
     public class EmailDataExtractor
     {
-        public ExpenseClaim Extract(string email)
+        public ExpenseClaimInput Extract(string email)
         {
             var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
             var vendorData = Regex.Match(email, "<vendor>.*</vendor>", RegexOptions.Singleline).Value;
@@ -24,30 +24,13 @@ namespace SerkoExpense.Domain
 
             var date = XDocument.Parse(dateData).Element("date").Value;
 
-            return ValidateExpenseClaim(date, costCentre, total, paymentMethod, vendor, description);
-        }
-
-        private static ExpenseClaim ValidateExpenseClaim(string date, string costCentre, decimal total, string paymentMethod,
-            string vendor, string description)
-        {
-            ExpenseClaim expenseClaim;
-            try
+            var expenseClaimInput = new ExpenseClaimInput
             {
-                const string supportedDateFormat = "dddd d MMMM yyyy";
-                var dateTime = DateTime.ParseExact(date, supportedDateFormat, CultureInfo.InvariantCulture);
-                expenseClaim = new ExpenseClaim
-                {
-                    ExpenseInformation = new Expense
-                        {CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod},
-                    Vendor = vendor, Description = description, Date = dateTime
-                };
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+                CostCentre = costCentre, Total = total, PaymentMethod = paymentMethod, Vendor = vendor,
+                Description = description, Date = date
+            };
 
-            return expenseClaim;
+            return expenseClaimInput;
         }
     }
 }
