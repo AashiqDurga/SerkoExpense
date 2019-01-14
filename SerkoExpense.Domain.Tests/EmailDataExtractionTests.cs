@@ -40,6 +40,7 @@ namespace SerkoExpense.Domain.Tests
             Assert.Equal(expected.Total, result.Total);
             Assert.Equal(expected.Vendor, result.Vendor);
             Assert.Equal(expected.Description, result.Description);
+            Assert.Equal(expected.Date, result.Date);
         }
 
         [Fact]
