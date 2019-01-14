@@ -15,7 +15,7 @@ namespace SerkoExpense.Domain
             var dateData = Regex.Match(email, "<date>.*</date>", RegexOptions.Singleline).Value;
 
             var expenseXml = XDocument.Parse(expenseData);
-            var costCentre = expenseXml.Root.Element("cost_centre").Value;
+            var costCentre = expenseXml.Root.Element("cost_centre")?.Value ?? "UNKNOWN";
             var total = decimal.Parse(expenseXml.Root.Element("total").Value);
             var paymentMethod = expenseXml.Root.Element("payment_method").Value;
 
