@@ -7,7 +7,7 @@ namespace SerkoExpense.Application
         public ExpenseClaimResult Process(string email)
         {
             var dataExtractor = new EmailDataExtractor();
-            var expenseClaimInput = dataExtractor.ExtractFrom(email);
+            var expenseClaimInput = dataExtractor.Extract(email);
 
             return BuildExpenseClaimResult(expenseClaimInput);
         }

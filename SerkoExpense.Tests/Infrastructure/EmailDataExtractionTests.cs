@@ -43,7 +43,7 @@ namespace SerkoExpense.Tests.Infrastructure
                 Regards,
             Ivan";
 
-            var expenseClaimInput = _dataExtractor.ExtractFrom(email);
+            var expenseClaimInput = _dataExtractor.Extract(email);
 
             expenseClaimInput.Should().BeEquivalentTo(expectedExpenseClaimInput);
         }
@@ -77,7 +77,7 @@ namespace SerkoExpense.Tests.Infrastructure
                 Regards,
             Ivan";
 
-            var expenseClaimInput = _dataExtractor.ExtractFrom(emailWithoutCostCentre);
+            var expenseClaimInput = _dataExtractor.Extract(emailWithoutCostCentre);
             
             expenseClaimInput.Should().BeEquivalentTo(expectedExpenseClaimInput);
         }
@@ -103,7 +103,7 @@ namespace SerkoExpense.Tests.Infrastructure
                 Regards,
             Ivan";
 
-            Assert.Throws<InvalidDataException>(() => _dataExtractor.ExtractFrom(emailWithoutATotal));
+            Assert.Throws<InvalidDataException>(() => _dataExtractor.Extract(emailWithoutATotal));
         }
     }
 }
