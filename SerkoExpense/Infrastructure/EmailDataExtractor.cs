@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -7,27 +8,23 @@ namespace SerkoExpense.Infrastructure
 {
     public class EmailDataExtractor
     {
+        public List<string> data => new List<string>() {"vendor", "description", "date"};
+
         public ExpenseClaimInput ExtractFrom(string email)
         {
-            var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
-            var vendorData = Regex.Match(email, "<vendor>.*</vendor>", RegexOptions.Singleline).Value;
-            var descriptionData = Regex.Match(email, "<description>.*</description>", RegexOptions.Singleline).Value;
-            var dateData = Regex.Match(email, "<date>.*</date>", RegexOptions.Singleline).Value;
-
-            var expenseXml = XDocument.Parse(expenseData);
+            var expenseXml = ConvertExpenseToXml(email);
+            var costCentre = expenseXml.Root.Element("cost_centre")?.Value ?? "UNKNOWN";
+            var paymentMethod = expenseXml.Root.Element("payment_method")?.Value;
             var total = expenseXml.Root.Element("total")?.Value;
             if (string.IsNullOrEmpty(total))
             {
                 throw new InvalidDataException();
             }
-            
-            var costCentre = expenseXml.Root.Element("cost_centre")?.Value ?? "UNKNOWN";
-            var paymentMethod = expenseXml.Root.Element("payment_method")?.Value;
 
-            var vendor = XDocument.Parse(vendorData).Element("vendor")?.Value;
-            var description = XDocument.Parse(descriptionData).Element("description")?.Value;
+            var vendor = getSingleDataTag(email, "vendor");
+            var description = getSingleDataTag(email, "description");
+            var date = getSingleDataTag(email, "date");
 
-            var date = XDocument.Parse(dateData).Element("date")?.Value;
 
             var expenseClaimInput = new ExpenseClaimInput
             {
@@ -36,6 +33,20 @@ namespace SerkoExpense.Infrastructure
             };
 
             return expenseClaimInput;
+        }
+
+        private static string getSingleDataTag(string email, string foo)
+        {
+            var data = Regex.Match(email, $"<{foo}>.*</{foo}>", RegexOptions.Singleline).Value;
+            var vendor = XDocument.Parse(data).Element(foo)?.Value;
+
+            return vendor;
+        }
+
+        private static XDocument ConvertExpenseToXml(string email)
+        {
+            var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
+            return XDocument.Parse(expenseData);
         }
     }
 }
