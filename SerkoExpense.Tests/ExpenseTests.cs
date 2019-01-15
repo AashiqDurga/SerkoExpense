@@ -1,6 +1,7 @@
+using SerkoExpense.Domain;
 using Xunit;
 
-namespace SerkoExpense.Domain.Tests
+namespace SerkoExpense.Tests
 {
     public class ExpenseTests
     {

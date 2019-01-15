@@ -1,10 +1,9 @@
 using System.IO;
-using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using SerkoExpense.Domain.Application;
+using SerkoExpense.Application;
 
-namespace SerkoExpense.Domain
+namespace SerkoExpense.Infrastructure
 {
     public class EmailDataExtractor
     {
@@ -23,12 +22,12 @@ namespace SerkoExpense.Domain
             }
             
             var costCentre = expenseXml.Root.Element("cost_centre")?.Value ?? "UNKNOWN";
-            var paymentMethod = expenseXml.Root.Element("payment_method").Value;
+            var paymentMethod = expenseXml.Root.Element("payment_method")?.Value;
 
-            var vendor = XDocument.Parse(vendorData).Element("vendor").Value;
-            var description = XDocument.Parse(descriptionData).Element("description").Value;
+            var vendor = XDocument.Parse(vendorData).Element("vendor")?.Value;
+            var description = XDocument.Parse(descriptionData).Element("description")?.Value;
 
-            var date = XDocument.Parse(dateData).Element("date").Value;
+            var date = XDocument.Parse(dateData).Element("date")?.Value;
 
             var expenseClaimInput = new ExpenseClaimInput
             {

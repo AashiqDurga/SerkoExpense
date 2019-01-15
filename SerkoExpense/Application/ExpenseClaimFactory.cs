@@ -1,7 +1,8 @@
 using System;
 using System.Globalization;
+using SerkoExpense.Domain;
 
-namespace SerkoExpense.Domain.Application
+namespace SerkoExpense.Application
 {
     public class ExpenseClaimFactory
     {

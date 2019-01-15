@@ -1,4 +1,4 @@
-namespace SerkoExpense.Domain.Application
+namespace SerkoExpense.Application
 {
     public class ExpenseClaimInput
     {

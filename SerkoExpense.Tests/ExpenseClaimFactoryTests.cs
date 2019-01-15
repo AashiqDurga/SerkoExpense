@@ -1,10 +1,10 @@
 using System;
 using FluentAssertions;
-using SerkoExpense.Domain.Application;
+using SerkoExpense.Application;
+using SerkoExpense.Domain;
 using Xunit;
-using Xunit.Sdk;
 
-namespace SerkoExpense.Domain.Tests
+namespace SerkoExpense.Tests
 {
     public class ExpenseClaimFactoryTests
     {

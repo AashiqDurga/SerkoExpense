@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Domain.Tests", "SerkoExpense.Domain.Tests\SerkoExpense.Domain.Tests.csproj", "{CCC40624-EC13-48DD-8AB8-F2E98E7C897E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Tests", "SerkoExpense.Tests\SerkoExpense.Tests.csproj", "{CCC40624-EC13-48DD-8AB8-F2E98E7C897E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Domain", "SerkoExpense.Domain\SerkoExpense.Domain.csproj", "{67263138-1A22-4E7F-9E2B-6B4D89871654}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense", "SerkoExpense\SerkoExpense.csproj", "{67263138-1A22-4E7F-9E2B-6B4D89871654}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8A0851FA-DE19-4C48-B324-B4648DBBFC0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,8 @@ Global
 		{67263138-1A22-4E7F-9E2B-6B4D89871654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67263138-1A22-4E7F-9E2B-6B4D89871654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67263138-1A22-4E7F-9E2B-6B4D89871654}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCC40624-EC13-48DD-8AB8-F2E98E7C897E} = {8A0851FA-DE19-4C48-B324-B4648DBBFC0A}
 	EndGlobalSection
 EndGlobal
