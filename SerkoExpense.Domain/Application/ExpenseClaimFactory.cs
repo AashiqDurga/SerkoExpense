@@ -7,10 +7,11 @@ namespace SerkoExpense.Domain.Application
     {
         public ExpenseClaim CreateExpenseClaimFrom(ExpenseClaimInput expenseInput)
         {
-            var dateTime = ValidateDate(expenseInput.Date);
+            var expenseClaimDate = ValidateDate(expenseInput.Date);
+            
             var expenseClaim = new ExpenseClaim(expenseInput.CostCentre, expenseInput.Total, expenseInput.PaymentMethod)
             {
-                Vendor = expenseInput.Vendor, Date = dateTime, Description = expenseInput.Description
+                Vendor = expenseInput.Vendor, Date = expenseClaimDate, Description = expenseInput.Description
             };
 
             return expenseClaim;

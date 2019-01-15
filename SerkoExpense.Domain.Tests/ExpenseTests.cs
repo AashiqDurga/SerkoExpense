@@ -7,8 +7,8 @@ namespace SerkoExpense.Domain.Tests
         [Fact]
         public void GivenATotalWithGstIncludedWhenCreatingExpenseThenCalculateGstAmount()
         {
-            var total = 1024.01m;
-            var expectedGstAmount = 153.6015m;
+            const decimal total = 1024.01m;
+            const decimal expectedGstAmount = 153.6015m;
             
             var expense = new Expense {CostCentre = "DEV002", Total= total, PaymentMethod = "card"};
             

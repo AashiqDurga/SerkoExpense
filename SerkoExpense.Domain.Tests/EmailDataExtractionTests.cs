@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using FluentAssertions;
 using SerkoExpense.Domain.Application;
@@ -8,6 +7,13 @@ namespace SerkoExpense.Domain.Tests
 {
     public class EmailDataExtractionTests
     {
+        private readonly EmailDataExtractor _dataExtractor;
+
+        public EmailDataExtractionTests()
+        {
+            _dataExtractor = new EmailDataExtractor();
+        }
+
         [Fact]
         public void GivenAnEmailWithCorrectDataWhenProcessingTheContentThenExtractExpenseInformation()
         {
@@ -36,15 +42,14 @@ namespace SerkoExpense.Domain.Tests
                 Regards,
             Ivan";
 
-            var dataExtractor = new EmailDataExtractor();
-            var expenseClaimInput = dataExtractor.Extract(email);
+            var expenseClaimInput = _dataExtractor.ExtractFrom(email);
 
             expenseClaimInput.Should().BeEquivalentTo(expectedExpenseClaimInput);
         }
         
         
         [Fact]
-        public void GivenAnEmailWithCostCenterWhenProcessingTheContentThenSetCostCentreToUnknown()
+        public void GivenAnEmailWithoutCostCenterWhenProcessingTheContentThenSetCostCentreToUnknown()
         {
             var expectedExpenseClaimInput = new ExpenseClaimInput
             {
@@ -53,7 +58,7 @@ namespace SerkoExpense.Domain.Tests
                 Date = "Thursday 27 April 2017"
             };
 
-            var email = @"Hi Yvaine,
+            const string emailWithoutCostCentre = @"Hi Yvaine,
             Please create an expense claim for the below. Relevant details are marked up as
                 requested…
                 <expense>
@@ -71,16 +76,15 @@ namespace SerkoExpense.Domain.Tests
                 Regards,
             Ivan";
 
-            var dataExtractor = new EmailDataExtractor();
-            var expenseClaimInput = dataExtractor.Extract(email);
-
+            var expenseClaimInput = _dataExtractor.ExtractFrom(emailWithoutCostCentre);
+            
             expenseClaimInput.Should().BeEquivalentTo(expectedExpenseClaimInput);
         }
         
         [Fact]
         public void GivenAnEmailWithoutATotalWhenProcessingTheContentThenRejectTheData()
         {
-            var email = @"Hi Yvaine,
+            const string emailWithoutATotal = @"Hi Yvaine,
             Please create an expense claim for the below. Relevant details are marked up as
                 requested…
                 <expense><cost_centre>DEV002</cost_centre>
@@ -98,8 +102,7 @@ namespace SerkoExpense.Domain.Tests
                 Regards,
             Ivan";
 
-            var dataExtractor = new EmailDataExtractor();
-            Assert.Throws<InvalidDataException>(() => dataExtractor.Extract(email));
+            Assert.Throws<InvalidDataException>(() => _dataExtractor.ExtractFrom(emailWithoutATotal));
         }
     }
 }

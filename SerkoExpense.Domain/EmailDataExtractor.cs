@@ -8,7 +8,7 @@ namespace SerkoExpense.Domain
 {
     public class EmailDataExtractor
     {
-        public ExpenseClaimInput Extract(string email)
+        public ExpenseClaimInput ExtractFrom(string email)
         {
             var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
             var vendorData = Regex.Match(email, "<vendor>.*</vendor>", RegexOptions.Singleline).Value;
