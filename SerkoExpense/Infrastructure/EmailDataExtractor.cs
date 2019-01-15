@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -8,7 +9,9 @@ namespace SerkoExpense.Infrastructure
 {
     public class EmailDataExtractor
     {
-        public List<string> data => new List<string>() {"vendor", "description", "date"};
+        private const string Vendor = "vendor";
+        private const string Description = "description";
+        private const string Date = "date";
 
         public ExpenseClaimInput ExtractFrom(string email)
         {
@@ -21,32 +24,36 @@ namespace SerkoExpense.Infrastructure
                 throw new InvalidDataException();
             }
 
-            var vendor = getSingleDataTag(email, "vendor");
-            var description = getSingleDataTag(email, "description");
-            var date = getSingleDataTag(email, "date");
-
-
-            var expenseClaimInput = new ExpenseClaimInput
+            return new ExpenseClaimInput
             {
-                CostCentre = costCentre, Total = decimal.Parse(total), PaymentMethod = paymentMethod, Vendor = vendor,
-                Description = description, Date = date
+                CostCentre = costCentre, Total = decimal.Parse(total), PaymentMethod = paymentMethod,
+                Vendor = GetValueFor(email)[Vendor],
+                Description = GetValueFor(email)[Description], Date = GetValueFor(email)[Date]
             };
-
-            return expenseClaimInput;
-        }
-
-        private static string getSingleDataTag(string email, string foo)
-        {
-            var data = Regex.Match(email, $"<{foo}>.*</{foo}>", RegexOptions.Singleline).Value;
-            var vendor = XDocument.Parse(data).Element(foo)?.Value;
-
-            return vendor;
         }
 
         private static XDocument ConvertExpenseToXml(string email)
         {
             var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
             return XDocument.Parse(expenseData);
+        }
+
+        private static string ExtractDataFor(string email, string dataTag)
+        {
+            var data = Regex.Match(email, $"<{dataTag}>.*</{dataTag}>", RegexOptions.Singleline).Value;
+
+            return XDocument.Parse(data).Element(dataTag)?.Value;
+        }
+
+        private static Dictionary<string, string> GetValueFor(string email)
+        {
+            var dictionary = new Dictionary<string, string>
+            {
+                {Vendor, ExtractDataFor(email, Vendor)},
+                {Description, ExtractDataFor(email, Description)},
+                {Date, ExtractDataFor(email, Date)}
+            };
+            return dictionary;
         }
     }
 }
