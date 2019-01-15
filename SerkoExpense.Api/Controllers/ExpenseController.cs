@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using SerkoExpense.Application;
 
@@ -9,21 +8,19 @@ namespace SerkoExpense.Api.Controllers
     [ApiController]
     public class ExpenseController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly ExpenseClaimService _expenseClaimService;
+
+        public ExpenseController()
         {
-            return new string[] {"value1", "value2"};
+            _expenseClaimService = new ExpenseClaimService();
         }
 
-        // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] string email)
+        public ActionResult Post([FromBody] string email)
         {
-            var service = new ExpenseClaimService();
             try
             {
-                return Ok(service.Process(email));
+                return Ok(_expenseClaimService.Process(email));
             }
             catch (Exception exception)
             {

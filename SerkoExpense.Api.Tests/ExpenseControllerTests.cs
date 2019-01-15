@@ -6,7 +6,7 @@ namespace SerkoExpense.Api.Tests
 {
     public class ExpenseControllerTests
     {
-        private ExpenseController _controller;
+        private readonly ExpenseController _controller;
 
         public ExpenseControllerTests()
         {
