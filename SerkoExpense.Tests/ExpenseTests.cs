@@ -16,7 +16,7 @@ namespace SerkoExpense.Tests
         [Fact]
         public void GivenATotalWithGstIncludedWhenCreatingExpenseThenCalculateGstAmount()
         {
-            const decimal expectedGstAmount = 153.6015m;
+            const decimal expectedGstAmount = 153.60m;
             
             Assert.Equal(expectedGstAmount, _expense.GstAmount);
         }
