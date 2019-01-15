@@ -4,26 +4,28 @@ namespace SerkoExpense.Domain.Tests
 {
     public class ExpenseTests
     {
+        private readonly Expense _expense;
+
+        public ExpenseTests()
+        {
+            const decimal total = 1024.01m;
+            _expense = new Expense {CostCentre = "DEV002", Total= total, PaymentMethod = "card"};
+        }
+        
         [Fact]
         public void GivenATotalWithGstIncludedWhenCreatingExpenseThenCalculateGstAmount()
         {
-            const decimal total = 1024.01m;
             const decimal expectedGstAmount = 153.6015m;
             
-            var expense = new Expense {CostCentre = "DEV002", Total= total, PaymentMethod = "card"};
-            
-            Assert.Equal(expectedGstAmount, expense.GstAmount);
+            Assert.Equal(expectedGstAmount, _expense.GstAmount);
         }
         
         [Fact]
         public void GivenATotalWithGstIncludedWhenCreatingExpenseThenCalculateTheTotalExcludingGst()
         {
-            const decimal total = 1024.01m;
-            const decimal expectedGstAmount = 870.41m;
+            const decimal expectedTotalExcludingGst = 870.41m;
             
-            var expense = new Expense {CostCentre = "DEV002", Total= total, PaymentMethod = "card"};
-            
-            Assert.Equal(expectedGstAmount, expense.TotalExcludingGst);
+            Assert.Equal(expectedTotalExcludingGst, _expense.TotalExcludingGst);
         }
     }
 }
