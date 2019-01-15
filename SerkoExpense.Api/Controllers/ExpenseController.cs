@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SerkoExpense.Application;
 using SerkoExpense.Infrastructure;
 
 namespace SerkoExpense.Api.Controllers
@@ -11,37 +13,18 @@ namespace SerkoExpense.Api.Controllers
     [ApiController]
     public class ExpenseController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] {"value1", "value2"};
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<ExpenseClaimResult> Post([FromBody] string email)
         {
-            
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var service = new ExpenseClaimService();
+            try
+            {
+                return service.Process(email);
+            }
+            catch (Exception exception)
+            {
+                return StatusCode((int) HttpStatusCode.BadRequest);
+            }
         }
     }
 }
