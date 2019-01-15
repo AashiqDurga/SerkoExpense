@@ -4,7 +4,7 @@ using SerkoExpense.Application;
 using SerkoExpense.Domain;
 using Xunit;
 
-namespace SerkoExpense.Tests
+namespace SerkoExpense.Tests.Application
 {
     public class ExpenseClaimFactoryTests
     {

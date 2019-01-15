@@ -4,7 +4,7 @@ using SerkoExpense.Application;
 using SerkoExpense.Infrastructure;
 using Xunit;
 
-namespace SerkoExpense.Tests
+namespace SerkoExpense.Tests.Infrastructure
 {
     public class EmailDataExtractionTests
     {

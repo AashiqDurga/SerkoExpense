@@ -12,6 +12,8 @@
         <e p="Application" t="Include">
           <e p="ExpenseClaimFactory.cs" t="Include" />
           <e p="ExpenseClaimInput.cs" t="Include" />
+          <e p="ExpenseClaimResult.cs" t="Include" />
+          <e p="ExpenseClaimService.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain" t="Include">
@@ -54,11 +56,17 @@
       </e>
       <e p="SerkoExpense.sln" t="IncludeFlat" />
       <e p="SerkoExpense.Tests" t="IncludeRecursive">
+        <e p="Application" t="Include">
+          <e p="ExpenseClaimFactoryTests.cs" t="Include" />
+          <e p="ExpenseClaimServiceTests.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="EmailDataExtractionTests.cs" t="Include" />
-        <e p="ExpenseClaimFactoryTests.cs" t="Include" />
-        <e p="ExpenseClaimServiceTests.cs" t="Include" />
-        <e p="ExpenseTests.cs" t="Include" />
+        <e p="Domain" t="Include">
+          <e p="ExpenseTests.cs" t="Include" />
+        </e>
+        <e p="Infrastructure" t="Include">
+          <e p="EmailDataExtractionTests.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
