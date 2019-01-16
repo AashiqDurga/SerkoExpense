@@ -17,3 +17,4 @@ data in the request body
 * CICD pipeline demonstration is not required.
 * The provided information in email contains an invalid date (Tuesday 27 April 2017), wrote my solution around a correct date (Thursday 27 April 2017) and accommodated 
 for an incorrect date. 
+* A better solution may have been created if this was attempted in a collaborative manner ie. Pair Programmed or Mob Programmed.
