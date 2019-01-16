@@ -9,7 +9,7 @@ The Solution has been developed using Dotnet Core 2.1.
 * The Dotnet cli can be used to restore, build and run tests.
 * To run the api  execute "dotnet run --project SerkoExpense.Api/SerkoExpense.Api.csproj" 
 * Navigate to https://localhost:5001/api/healthcheck to confirm the api is up and running.
-* Manual Testing can be acheived with a client of your choice by executing a post request to the /expense endpoint with the relevant data in the request body. 
+* Manual Testing can be acheived with a client of your choice by executing a post request to the /expense endpoint with the relevant  [InputData](InputData.json)  in the request body. 
  
 
 
