@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using SerkoExpense.Application;
@@ -36,9 +38,18 @@ namespace SerkoExpense.Infrastructure
 
         private static string ExtractDataFor(string email, string dataTag)
         {
-            var data = Regex.Match(email, $"<{dataTag}>.*</{dataTag}>", RegexOptions.Singleline).Value;
+            try
+            {
+                var data = Regex.Match(email, $"<{dataTag}>.*</{dataTag}>", RegexOptions.Singleline).Value;
 
-            return XDocument.Parse(data).Element(dataTag)?.Value;
+                return XDocument.Parse(data).Element(dataTag)?.Value;
+            }
+            catch (Exception exception)
+            {
+                throw new InvalidDataException(
+                    "One or more elements may not be missing or not closed tagged correctly.",
+                    exception.InnerException);
+            }
         }
     }
 }

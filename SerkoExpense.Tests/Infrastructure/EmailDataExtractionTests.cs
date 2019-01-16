@@ -3,6 +3,7 @@ using FluentAssertions;
 using SerkoExpense.Application;
 using SerkoExpense.Infrastructure;
 using Xunit;
+using Xunit.Sdk;
 
 namespace SerkoExpense.Tests.Infrastructure
 {
@@ -47,8 +48,8 @@ namespace SerkoExpense.Tests.Infrastructure
 
             expenseClaimInput.Should().BeEquivalentTo(expectedExpenseClaimInput);
         }
-        
-        
+
+
         [Fact]
         public void GivenAnEmailWithoutCostCenterWhenProcessingTheContentThenSetCostCentreToUnknown()
         {
@@ -78,10 +79,10 @@ namespace SerkoExpense.Tests.Infrastructure
             Ivan";
 
             var expenseClaimInput = _dataExtractor.Extract(emailWithoutCostCentre);
-            
+
             expenseClaimInput.Should().BeEquivalentTo(expectedExpenseClaimInput);
         }
-        
+
         [Fact]
         public void GivenAnEmailWithoutATotalWhenProcessingTheContentThenThrowAnInvalidDataException()
         {
@@ -103,16 +104,17 @@ namespace SerkoExpense.Tests.Infrastructure
                 Regards,
             Ivan";
 
-            Assert.Throws<InvalidDataException>(() => _dataExtractor.Extract(emailWithoutATotal));
+            var exception = Assert.Throws<InvalidDataException>(() => _dataExtractor.Extract(emailWithoutATotal));
+            Assert.Equal("One or more elements may not be missing or not closed tagged correctly.", exception.Message);
         }
-        
+
         [Fact]
         public void GivenAnEmailWithoutAClosingTagWhenProcessingTheContentThenThrowAnInvalidDataException()
         {
             const string emailWithoutAClosingTag = @"Hi Yvaine,
             Please create an expense claim for the below. Relevant details are marked up as
                 requested…
-                <expense><cost_centre>DEV002</cost_centre>
+                <expense><cost_centre>DEV002</cost_centre><total>1024.01</total>
                 <payment_method>personal card</payment_method>
                 </expense>
                 From: Ivan Castle
@@ -126,7 +128,8 @@ namespace SerkoExpense.Tests.Infrastructure
             7.15pm. Approximately 12 people but I’ll confirm exact numbers closer to the day.
                 Regards,
             Ivan";
-            Assert.Throws<InvalidDataException>(() => _dataExtractor.Extract(emailWithoutAClosingTag));
+            var exception = Assert.Throws<InvalidDataException>(() => _dataExtractor.Extract(emailWithoutAClosingTag));
+            Assert.Equal("One or more elements may not be missing or not closed tagged correctly.", exception.Message);
         }
     }
 }

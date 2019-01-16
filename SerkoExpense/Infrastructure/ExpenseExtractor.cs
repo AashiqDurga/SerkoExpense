@@ -20,18 +20,14 @@ namespace SerkoExpense.Infrastructure
                 var expenseXml = ConvertExpenseToXml(email);
                 expenseInformation.CostCentre = expenseXml.Root.Element($"{CostCentre}")?.Value ?? "UNKNOWN";
                 expenseInformation.PaymentMethod = expenseXml.Root.Element($"{PaymentMethod}")?.Value;
-                expenseInformation.Total = expenseXml.Root.Element($"{Total}")?.Value;
-                
-                if (string.IsNullOrEmpty(expenseInformation.Total))
-                {
-                    throw new InvalidDataException();
-                }
+                expenseInformation.Total = expenseXml.Root.Element($"{Total}").Value;
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                throw new InvalidDataException();
+                throw new InvalidDataException(
+                    "One or more elements may not be missing or not closed tagged correctly.",
+                    exception.InnerException);
             }
-
 
             return expenseInformation;
         }
