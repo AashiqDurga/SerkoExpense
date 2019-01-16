@@ -7,6 +7,13 @@ namespace SerkoExpense.Tests.Application
 {
     public class ExpenseClaimServiceTests
     {
+        private readonly ExpenseClaimService _expenseService;
+
+        public ExpenseClaimServiceTests()
+        {
+            _expenseService = new ExpenseClaimService();
+        }
+
         [Fact]
         public void GivenAnExpenseClaimEmailWhenProcessingThenReturnTheCompleteClaim()
         {
@@ -35,8 +42,7 @@ namespace SerkoExpense.Tests.Application
                 Regards,
             Ivan";
 
-            var expenseService = new ExpenseClaimService();
-            var expenseClaimResult = expenseService.Process(email);
+            var expenseClaimResult = _expenseService.Process(email);
 
             expenseClaimResult.Should().BeEquivalentTo(expectedExpenseClaimResult);
         }
