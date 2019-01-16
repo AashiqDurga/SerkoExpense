@@ -15,15 +15,23 @@ namespace SerkoExpense.Infrastructure
 
         public ExpenseClaimInput Extract(string email)
         {
-            var expenseInformation = ExpenseExtractor.ExtractFrom(email);
+            return BuildExpenseClaimInput(email);
+        }
 
-            return new ExpenseClaimInput
+        private static ExpenseClaimInput BuildExpenseClaimInput(string email)
+        {
+            var expenseInformation = ExpenseExtractor.ExtractFrom(email);
+            
+            var expenseClaimInput = new ExpenseClaimInput
             {
-                CostCentre = expenseInformation.CostCentre, Total = decimal.Parse(expenseInformation.Total),
+                CostCentre = expenseInformation.CostCentre,
+                Total = decimal.Parse(expenseInformation.Total),
                 PaymentMethod = expenseInformation.PaymentMethod,
                 Vendor = GetIndividualTagValueFor(email)[Vendor],
-                Description = GetIndividualTagValueFor(email)[Description], Date = GetIndividualTagValueFor(email)[Date]
+                Description = GetIndividualTagValueFor(email)[Description],
+                Date = GetIndividualTagValueFor(email)[Date]
             };
+            return expenseClaimInput;
         }
 
         private static Dictionary<string, string> GetIndividualTagValueFor(string email)

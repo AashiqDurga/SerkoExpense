@@ -8,7 +8,6 @@ namespace SerkoExpense.Api.Controllers
     [ApiController]
     public class HealthCheckController : ControllerBase
     {
-
         [HttpGet]
         public ActionResult Get()
         {
