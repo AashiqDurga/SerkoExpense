@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Tests", "Serko
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense", "SerkoExpense\SerkoExpense.csproj", "{67263138-1A22-4E7F-9E2B-6B4D89871654}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8A0851FA-DE19-4C48-B324-B4648DBBFC0A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Api", "SerkoExpense.Api\SerkoExpense.Api.csproj", "{480FF4B0-FCDD-4CDE-B2B6-7DBDA2106E67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerkoExpense.Api.Tests", "SerkoExpense.Api.Tests\SerkoExpense.Api.Tests.csproj", "{577D099B-141E-451D-BEC0-920A6ADD7E4B}"
@@ -34,7 +32,5 @@ Global
 		{577D099B-141E-451D-BEC0-920A6ADD7E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CCC40624-EC13-48DD-8AB8-F2E98E7C897E} = {8A0851FA-DE19-4C48-B324-B4648DBBFC0A}
-		{577D099B-141E-451D-BEC0-920A6ADD7E4B} = {8A0851FA-DE19-4C48-B324-B4648DBBFC0A}
 	EndGlobalSection
 EndGlobal
