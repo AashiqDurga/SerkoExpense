@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.IO;
 using SerkoExpense.Domain;
 
 namespace SerkoExpense.Application
@@ -29,7 +30,7 @@ namespace SerkoExpense.Application
             }
             catch (Exception exception)
             {
-                throw exception;
+                throw new FormatException("The date supplied is Invalid.", exception.InnerException);
             }
 
             return dateTime;

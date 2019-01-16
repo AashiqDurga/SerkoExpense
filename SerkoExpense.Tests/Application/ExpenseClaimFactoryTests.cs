@@ -44,8 +44,9 @@ namespace SerkoExpense.Tests.Application
                 Description = "Lunch Meeting", Date = "Tuesday 27 April 2017"
             };
 
-            Assert.Throws<FormatException>(() => _expenseClaimFactory.CreateExpenseClaimFrom(expenseInput));
+            var exception =
+                Assert.Throws<FormatException>(() => _expenseClaimFactory.CreateExpenseClaimFrom(expenseInput));
+            Assert.Equal("The date supplied is Invalid.", exception.Message);
         }
-
     }
 }
