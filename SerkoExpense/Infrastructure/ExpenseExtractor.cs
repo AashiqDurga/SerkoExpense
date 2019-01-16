@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -14,19 +15,27 @@ namespace SerkoExpense.Infrastructure
         {
             ExpenseInformation expenseInformation;
 
-            var expenseXml = ConvertExpenseToXml(email);
-            
-            expenseInformation.CostCentre = expenseXml.Root.Element($"{CostCentre}")?.Value ?? "UNKNOWN";
-            expenseInformation.PaymentMethod = expenseXml.Root.Element($"{PaymentMethod}")?.Value;
-            expenseInformation.Total = expenseXml.Root.Element($"{Total}")?.Value;
-            
-            if (string.IsNullOrEmpty(expenseInformation.Total))
+            try
+            {
+                var expenseXml = ConvertExpenseToXml(email);
+                expenseInformation.CostCentre = expenseXml.Root.Element($"{CostCentre}")?.Value ?? "UNKNOWN";
+                expenseInformation.PaymentMethod = expenseXml.Root.Element($"{PaymentMethod}")?.Value;
+                expenseInformation.Total = expenseXml.Root.Element($"{Total}")?.Value;
+                
+                if (string.IsNullOrEmpty(expenseInformation.Total))
+                {
+                    throw new InvalidDataException();
+                }
+            }
+            catch (Exception e)
             {
                 throw new InvalidDataException();
             }
 
+
             return expenseInformation;
         }
+
         private static XDocument ConvertExpenseToXml(string email)
         {
             var expenseData = Regex.Match(email, "<expense>.*</expense>", RegexOptions.Singleline).Value;
@@ -37,7 +46,7 @@ namespace SerkoExpense.Infrastructure
         {
             public string CostCentre;
             public string PaymentMethod;
-            public string Total ;
+            public string Total;
         }
     }
 }
