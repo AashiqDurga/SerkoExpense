@@ -3,7 +3,6 @@ using FluentAssertions;
 using SerkoExpense.Application;
 using SerkoExpense.Infrastructure;
 using Xunit;
-using Xunit.Sdk;
 
 namespace SerkoExpense.Tests.Infrastructure
 {

@@ -14,6 +14,8 @@
           <e p="ExpenseClaimInput.cs" t="Include" />
           <e p="ExpenseClaimResult.cs" t="Include" />
           <e p="ExpenseClaimService.cs" t="Include" />
+          <e p="IExpenseClaimFactory.cs" t="Include" />
+          <e p="IExpenseClaimService.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain" t="Include">
@@ -21,8 +23,11 @@
           <e p="ExpenseClaim.cs" t="Include" />
         </e>
         <e p="Infrastructure" t="Include">
-          <e p="EmailDataExtractor.cs" t="Include" />
-          <e p="ExpenseExtractor.cs" t="Include" />
+          <e p="EmailExtractor" t="Include">
+            <e p="EmailDataExtractor.cs" t="Include" />
+            <e p="ExpenseExtractor.cs" t="Include" />
+            <e p="IDataExtractor.cs" t="Include" />
+          </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

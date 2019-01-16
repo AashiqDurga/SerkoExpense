@@ -7,7 +7,7 @@ using SerkoExpense.Application;
 
 namespace SerkoExpense.Infrastructure
 {
-    public class EmailDataExtractor
+    public class EmailDataExtractor : IDataExtractor
     {
         private const string Vendor = "vendor";
         private const string Description = "description";

@@ -2,20 +2,27 @@ using SerkoExpense.Infrastructure;
 
 namespace SerkoExpense.Application
 {
-    public class ExpenseClaimService
+    public class ExpenseClaimService : IExpenseClaimService
     {
+        private readonly IExpenseClaimFactory _expenseClaimFactory;
+        private readonly IDataExtractor _dataExtractor;
+
+        public ExpenseClaimService()
+        {
+            _dataExtractor = new EmailDataExtractor();
+            _expenseClaimFactory = new ExpenseClaimFactory();
+        }
+
         public ExpenseClaimResult Process(string email)
         {
-            var dataExtractor = new EmailDataExtractor();
-            var expenseClaimInput = dataExtractor.Extract(email);
+            var expenseClaimInput = _dataExtractor.Extract(email);
 
             return BuildExpenseClaimResult(expenseClaimInput);
         }
 
-        private static ExpenseClaimResult BuildExpenseClaimResult(ExpenseClaimInput expenseClaimInput)
+        private ExpenseClaimResult BuildExpenseClaimResult(ExpenseClaimInput expenseClaimInput)
         {
-            var factory = new ExpenseClaimFactory();
-            var expenseClaim = factory.CreateExpenseClaimFrom(expenseClaimInput);
+            var expenseClaim = _expenseClaimFactory.CreateExpenseClaimFrom(expenseClaimInput);
 
             return new ExpenseClaimResult
             {
