@@ -45,7 +45,7 @@ namespace SerkoExpense.Tests.Application
             };
 
             var exception =
-                Assert.Throws<FormatException>(() => _expenseClaimFactory.CreateExpenseClaimFrom(expenseInput));
+                Assert.Throws<InvalidDateException>(() => _expenseClaimFactory.CreateExpenseClaimFrom(expenseInput));
             Assert.Equal("The date supplied is Invalid.", exception.Message);
         }
     }

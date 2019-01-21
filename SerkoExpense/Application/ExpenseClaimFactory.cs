@@ -27,9 +27,9 @@ namespace SerkoExpense.Application
                 dateTime = DateTime.ParseExact(date, supportedDateFormat,
                     CultureInfo.InvariantCulture);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                throw new FormatException("The date supplied is Invalid.", exception.InnerException);
+                throw new InvalidDateException("The date supplied is Invalid.");
             }
 
             return dateTime;
