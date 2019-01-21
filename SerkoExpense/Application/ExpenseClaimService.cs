@@ -5,17 +5,17 @@ namespace SerkoExpense.Application
     public class ExpenseClaimService : IExpenseClaimService
     {
         private readonly IExpenseClaimFactory _expenseClaimFactory;
-        private readonly IDataExtractor _dataExtractor;
+        private readonly IDataExtractor _emailDataExtractor;
 
-        public ExpenseClaimService()
+        public ExpenseClaimService(IDataExtractor emailEmailDataExtractor, IExpenseClaimFactory expenseClaimFactory)
         {
-            _dataExtractor = new EmailDataExtractor();
-            _expenseClaimFactory = new ExpenseClaimFactory();
+            _emailDataExtractor = emailEmailDataExtractor;
+            _expenseClaimFactory = expenseClaimFactory;
         }
 
         public ExpenseClaimResult Process(string email)
         {
-            var expenseClaimInput = _dataExtractor.Extract(email);
+            var expenseClaimInput = _emailDataExtractor.Extract(email);
 
             return BuildExpenseClaimResult(expenseClaimInput);
         }

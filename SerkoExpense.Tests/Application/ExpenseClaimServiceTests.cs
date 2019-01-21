@@ -1,6 +1,8 @@
 using System;
 using FluentAssertions;
+using Moq;
 using SerkoExpense.Application;
+using SerkoExpense.Infrastructure;
 using Xunit;
 
 namespace SerkoExpense.Tests.Application
@@ -11,7 +13,10 @@ namespace SerkoExpense.Tests.Application
 
         public ExpenseClaimServiceTests()
         {
-            _expenseService = new ExpenseClaimService();
+            var emailDataExtractor = new Mock<EmailDataExtractor>();
+            var expenseClaimFactory = new Mock<ExpenseClaimFactory>();
+
+            _expenseService = new ExpenseClaimService(emailDataExtractor.Object, expenseClaimFactory.Object);
         }
 
         [Fact]
@@ -23,7 +28,7 @@ namespace SerkoExpense.Tests.Application
                 PaymentMethod = "personal card", Description = "development team’s project end celebration dinner",
                 Vendor = "Viaduct Steakhouse", Date = new DateTime(2017, 04, 27)
             };
-            
+
             var email = @"Hi Yvaine,
             Please create an expense claim for the below. Relevant details are marked up as
                 requested…
