@@ -1,18 +1,21 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 using SerkoExpense.Api.Controllers;
 using SerkoExpense.Application;
-using SerkoExpense.Infrastructure;
 using Xunit;
 
 namespace SerkoExpense.Api.Tests
 {
     public class ExpenseControllerTests
     {
-        private readonly ExpenseController _controller;
+        private ExpenseController _controller;
+        private readonly Mock<IExpenseClaimService> _expenseClaimService;
 
         public ExpenseControllerTests()
         {
-            _controller = new ExpenseController(new ExpenseClaimService(new EmailDataExtractor(), new ExpenseClaimFactory()));
+            _expenseClaimService = new Mock<IExpenseClaimService>();
+            _controller = new ExpenseController(_expenseClaimService.Object);
         }
 
         private const string ValidEmail = @"Hi Yvaine,
@@ -72,6 +75,8 @@ namespace SerkoExpense.Api.Tests
         [Fact]
         public void GivenAValidEmailWhenProcessedThenReturnOkResult200()
         {
+            _expenseClaimService.Setup(x => x.Process(ValidEmail)).Returns(It.IsAny<ExpenseClaimResult>());
+            _controller = new ExpenseController(_expenseClaimService.Object);
             var result = (OkObjectResult) _controller.Post(ValidEmail);
 
             Assert.Equal(200, result.StatusCode);
@@ -82,6 +87,8 @@ namespace SerkoExpense.Api.Tests
         [InlineData(400, EmailWithoutTotal)]
         public void GivenAInvalidEmailWhenProcessedThenReturnBadRequest400(int expected, string invalidEmail)
         {
+            _expenseClaimService.Setup(x => x.Process(invalidEmail)).Throws<Exception>();
+            _controller = new ExpenseController(_expenseClaimService.Object);
             var result = (BadRequestObjectResult) _controller.Post(invalidEmail);
 
             Assert.Equal(expected, result.StatusCode);
