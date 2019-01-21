@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SerkoExpense.Api.Controllers;
+using SerkoExpense.Application;
 using Xunit;
 
 namespace SerkoExpense.Api.Tests
@@ -10,7 +11,7 @@ namespace SerkoExpense.Api.Tests
 
         public ExpenseControllerTests()
         {
-            _controller = new ExpenseController();
+            _controller = new ExpenseController(new ExpenseClaimService());
         }
 
         private const string ValidEmail = @"Hi Yvaine,

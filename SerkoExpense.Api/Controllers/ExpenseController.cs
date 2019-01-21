@@ -8,11 +8,11 @@ namespace SerkoExpense.Api.Controllers
     [ApiController]
     public class ExpenseController : ControllerBase
     {
-        private readonly ExpenseClaimService _expenseClaimService;
+        private readonly IExpenseClaimService _expenseClaimService;
 
-        public ExpenseController()
+        public ExpenseController(IExpenseClaimService expenseClaimService)
         {
-            _expenseClaimService = new ExpenseClaimService();
+            _expenseClaimService = expenseClaimService;
         }
 
         [HttpPost]
