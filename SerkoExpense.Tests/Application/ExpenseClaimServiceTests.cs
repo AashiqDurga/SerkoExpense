@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using SerkoExpense.Application;
 using SerkoExpense.Infrastructure;
@@ -16,7 +17,8 @@ namespace SerkoExpense.Tests.Application
             var emailDataExtractor = new Mock<EmailDataExtractor>();
             var expenseClaimFactory = new Mock<ExpenseClaimFactory>();
 
-            _expenseService = new ExpenseClaimService(emailDataExtractor.Object, expenseClaimFactory.Object);
+            var logger = new Mock<ILogger<IExpenseClaimService>>();
+            _expenseService = new ExpenseClaimService(emailDataExtractor.Object, expenseClaimFactory.Object, logger.Object);
         }
 
         [Fact]
