@@ -1,5 +1,7 @@
 using System;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using SerkoExpense.Application;
 using SerkoExpense.Domain;
 using Xunit;
@@ -9,10 +11,12 @@ namespace SerkoExpense.Tests.Application
     public class ExpenseClaimFactoryTests
     {
         private readonly ExpenseClaimFactory _expenseClaimFactory;
+        private Mock<ILogger<IExpenseClaimFactory>> _logger;
 
         public ExpenseClaimFactoryTests()
         {
-            _expenseClaimFactory = new ExpenseClaimFactory();
+            _logger = new Mock<ILogger<IExpenseClaimFactory>>();
+            _expenseClaimFactory = new ExpenseClaimFactory(_logger.Object);
         }
 
         [Fact]
