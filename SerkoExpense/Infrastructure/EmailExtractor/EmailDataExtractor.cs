@@ -52,7 +52,7 @@ namespace SerkoExpense.Infrastructure
 
                 return XDocument.Parse(data).Element(dataTag)?.Value;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw new InvalidEmailDataException(
                     "One or more elements may be missing or tags not closed correctly.");
