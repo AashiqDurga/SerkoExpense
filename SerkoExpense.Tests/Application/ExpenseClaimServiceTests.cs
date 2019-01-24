@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
 using SerkoExpense.Application;
+using SerkoExpense.Domain;
 using SerkoExpense.Infrastructure;
 using Xunit;
 
@@ -11,14 +12,26 @@ namespace SerkoExpense.Tests.Application
     public class ExpenseClaimServiceTests
     {
         private readonly ExpenseClaimService _expenseService;
+        private Mock<IDataExtractor> _emailDataExtractor;
+        private Mock<IExpenseClaimFactory> _expenseClaimFactory;
+        private Mock<ILogger<IExpenseClaimService>> _logger;
 
         public ExpenseClaimServiceTests()
         {
-            var emailDataExtractor = new Mock<EmailDataExtractor>();
-            var expenseClaimFactory = new Mock<ExpenseClaimFactory>();
+            _emailDataExtractor = new Mock<IDataExtractor>();
+            _emailDataExtractor.Setup(x => x.Extract(It.IsAny<string>())).Returns(new ExpenseClaimInput());
+            _expenseClaimFactory = new Mock<IExpenseClaimFactory>();
+            var expenseClaim = new ExpenseClaim("DEV002", 1024.01m, "personal card")
+            {
+                Date = new DateTime(2017, 04, 27), Description = "development team’s project end celebration dinner",
+                Vendor = "Viaduct Steakhouse"
+            };
+            _expenseClaimFactory.Setup(x => x.CreateExpenseClaimFrom(It.IsAny<ExpenseClaimInput>()))
+                .Returns(expenseClaim);
 
-            var logger = new Mock<ILogger<IExpenseClaimService>>();
-            _expenseService = new ExpenseClaimService(emailDataExtractor.Object, expenseClaimFactory.Object, logger.Object);
+            _logger = new Mock<ILogger<IExpenseClaimService>>();
+            _expenseService =
+                new ExpenseClaimService(_emailDataExtractor.Object, _expenseClaimFactory.Object, _logger.Object);
         }
 
         [Fact]
