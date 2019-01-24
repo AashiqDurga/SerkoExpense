@@ -12,23 +12,16 @@ namespace SerkoExpense.Tests.Application
     public class ExpenseClaimServiceTests
     {
         private readonly ExpenseClaimService _expenseService;
+        private readonly Mock<IExpenseClaimFactory> _expenseClaimFactory;
         private Mock<IDataExtractor> _emailDataExtractor;
-        private Mock<IExpenseClaimFactory> _expenseClaimFactory;
         private Mock<ILogger<IExpenseClaimService>> _logger;
 
         public ExpenseClaimServiceTests()
         {
             _emailDataExtractor = new Mock<IDataExtractor>();
             _emailDataExtractor.Setup(x => x.Extract(It.IsAny<string>())).Returns(new ExpenseClaimInput());
+            
             _expenseClaimFactory = new Mock<IExpenseClaimFactory>();
-            var expenseClaim = new ExpenseClaim("DEV002", 1024.01m, "personal card")
-            {
-                Date = new DateTime(2017, 04, 27), Description = "development team’s project end celebration dinner",
-                Vendor = "Viaduct Steakhouse"
-            };
-            _expenseClaimFactory.Setup(x => x.CreateExpenseClaimFrom(It.IsAny<ExpenseClaimInput>()))
-                .Returns(expenseClaim);
-
             _logger = new Mock<ILogger<IExpenseClaimService>>();
             _expenseService =
                 new ExpenseClaimService(_emailDataExtractor.Object, _expenseClaimFactory.Object, _logger.Object);
@@ -37,6 +30,14 @@ namespace SerkoExpense.Tests.Application
         [Fact]
         public void GivenAnExpenseClaimEmailWhenProcessingThenReturnTheCompleteClaim()
         {
+            var expenseClaim = new ExpenseClaim("DEV002", 1024.01m, "personal card")
+            {
+                Date = new DateTime(2017, 04, 27), Description = "development team’s project end celebration dinner",
+                Vendor = "Viaduct Steakhouse"
+            };
+            _expenseClaimFactory.Setup(x => x.CreateExpenseClaimFrom(It.IsAny<ExpenseClaimInput>()))
+                .Returns(expenseClaim);
+
             var expectedExpenseClaimResult = new ExpenseClaimResult
             {
                 CostCentre = "DEV002", TotalIncludingGst = 1024.01m, TotalExcludingGst = 870.41m, GstAmount = 153.60m,
