@@ -28,7 +28,7 @@ namespace SerkoExpense.Application
         {
             var expenseClaim = _expenseClaimFactory.CreateExpenseClaimFrom(expenseClaimInput);
 
-            _logger.LogInformation($"Built expense claim {expenseClaim}");
+            _logger.LogInformation("Successfully built expense claim");
             return new ExpenseClaimResult
             {
                 CostCentre = expenseClaim.Expense.CostCentre, Date = expenseClaim.Date,
