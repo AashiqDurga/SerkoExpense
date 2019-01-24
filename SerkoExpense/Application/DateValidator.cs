@@ -3,11 +3,6 @@ using System.Globalization;
 using Microsoft.Extensions.Logging;
 using SerkoExpense;
 
-public interface IDateValidator
-{
-    DateTime Validate(string date);
-}
-
 public class DateValidator : IDateValidator
 {
     private static ILogger _logger;

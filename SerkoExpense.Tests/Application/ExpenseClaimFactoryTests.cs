@@ -12,7 +12,7 @@ namespace SerkoExpense.Tests.Application
     {
         private readonly ExpenseClaimFactory _expenseClaimFactory;
         private Mock<ILogger<IExpenseClaimFactory>> _logger;
-        private Mock<IDateValidator> _validator;
+        private readonly Mock<IDateValidator> _validator;
 
         public ExpenseClaimFactoryTests()
         {
@@ -24,7 +24,9 @@ namespace SerkoExpense.Tests.Application
         [Fact]
         public void GivenAnExpenseClaimInputThenCreateAnExpenseClaim()
         {
-            _validator.Setup(x => x.Validate(It.IsAny<string>())).Returns(new DateTime(2019, 01, 15));
+            _validator.Setup(x => x.Validate(It.IsAny<string>()))
+                .Returns(new DateTime(2019, 01, 15));
+
             var expectedExpenseClaim = new ExpenseClaim("DEV002", 104.23m, "personal card")
             {
                 Vendor = "Subway", Description = "Lunch Meeting",
@@ -41,6 +43,5 @@ namespace SerkoExpense.Tests.Application
 
             expenseClaim.Should().BeEquivalentTo(expectedExpenseClaim);
         }
-
     }
 }

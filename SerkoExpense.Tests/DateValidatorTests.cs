@@ -6,12 +6,17 @@ namespace SerkoExpense.Tests
 {
     public class DateValidatorTests
     {
+        private readonly Mock<ILogger<IDateValidator>> _logger;
+
+        public DateValidatorTests()
+        {
+            _logger = _logger = new Mock<ILogger<IDateValidator>>();
+        }
+
         [Fact]
         public void GivenAnIncorrectDateWhenProcessingTheContentThenThrowAnException()
         {
-            var _logger = new Mock<ILogger<IDateValidator>>();
             var validator = new DateValidator(_logger.Object);
-
 
             var exception =
                 Assert.Throws<InvalidDateException>(() => validator.Validate("Tuesday 27 April 2017"));
