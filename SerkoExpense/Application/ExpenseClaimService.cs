@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SerkoExpense.Infrastructure;
 
 namespace SerkoExpense.Application
@@ -5,17 +6,20 @@ namespace SerkoExpense.Application
     public class ExpenseClaimService : IExpenseClaimService
     {
         private readonly IExpenseClaimFactory _expenseClaimFactory;
-        private readonly IDataExtractor _dataExtractor;
+        private readonly ILogger _logger;
+        private readonly IDataExtractor _emailDataExtractor;
 
-        public ExpenseClaimService()
+        public ExpenseClaimService(IDataExtractor emailEmailDataExtractor, IExpenseClaimFactory expenseClaimFactory,
+            ILogger<IExpenseClaimService> logger)
         {
-            _dataExtractor = new EmailDataExtractor();
-            _expenseClaimFactory = new ExpenseClaimFactory();
+            _emailDataExtractor = emailEmailDataExtractor;
+            _expenseClaimFactory = expenseClaimFactory;
+            _logger = logger;
         }
 
         public ExpenseClaimResult Process(string email)
         {
-            var expenseClaimInput = _dataExtractor.Extract(email);
+            var expenseClaimInput = _emailDataExtractor.Extract(email);
 
             return BuildExpenseClaimResult(expenseClaimInput);
         }
@@ -24,6 +28,7 @@ namespace SerkoExpense.Application
         {
             var expenseClaim = _expenseClaimFactory.CreateExpenseClaimFrom(expenseClaimInput);
 
+            _logger.LogInformation("Successfully built expense claim");
             return new ExpenseClaimResult
             {
                 CostCentre = expenseClaim.Expense.CostCentre, Date = expenseClaim.Date,

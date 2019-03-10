@@ -127,8 +127,8 @@ namespace SerkoExpense.Tests.Infrastructure
             7.15pm. Approximately 12 people but I’ll confirm exact numbers closer to the day.
                 Regards,
             Ivan";
-            var exception = Assert.Throws<InvalidDataException>(() => _dataExtractor.Extract(emailWithoutAClosingTag));
-            Assert.Equal("One or more elements may not be missing or not closed tagged correctly.", exception.Message);
+            var exception = Assert.Throws<InvalidEmailDataException>(() => _dataExtractor.Extract(emailWithoutAClosingTag));
+            Assert.Equal("One or more elements may be missing or tags not closed correctly.", exception.Message);
         }
     }
 }

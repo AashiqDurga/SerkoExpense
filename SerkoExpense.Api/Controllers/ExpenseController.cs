@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SerkoExpense.Application;
 
 namespace SerkoExpense.Api.Controllers
@@ -8,11 +9,13 @@ namespace SerkoExpense.Api.Controllers
     [ApiController]
     public class ExpenseController : ControllerBase
     {
-        private readonly ExpenseClaimService _expenseClaimService;
+        private readonly IExpenseClaimService _expenseClaimService;
+        private readonly ILogger _logger;
 
-        public ExpenseController()
+        public ExpenseController(IExpenseClaimService expenseClaimService, ILogger<ExpenseController> logger)
         {
-            _expenseClaimService = new ExpenseClaimService();
+            _expenseClaimService = expenseClaimService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -20,10 +23,12 @@ namespace SerkoExpense.Api.Controllers
         {
             try
             {
+                _logger.LogInformation($"Processing email: {email}");
                 return Ok(_expenseClaimService.Process(email));
             }
             catch (Exception exception)
             {
+                _logger.LogError($"Cannot process Expense email: {exception}");
                 return BadRequest(exception);
             }
         }

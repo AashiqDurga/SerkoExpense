@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using SerkoExpense.Api.Controllers;
+using SerkoExpense.Application;
+using SerkoExpense.Infrastructure;
 
 namespace SerkoExpense.Api
 {
@@ -19,6 +23,9 @@ namespace SerkoExpense.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IExpenseClaimService, ExpenseClaimService>();
+            services.AddTransient<IDataExtractor, EmailDataExtractor>();
+            services.AddTransient<IExpenseClaimFactory, ExpenseClaimFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

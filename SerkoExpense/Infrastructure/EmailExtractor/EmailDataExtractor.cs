@@ -21,7 +21,7 @@ namespace SerkoExpense.Infrastructure
         private static ExpenseClaimInput BuildExpenseClaimInput(string email)
         {
             var expenseInformation = ExpenseExtractor.ExtractFrom(email);
-            
+
             var expenseClaimInput = new ExpenseClaimInput
             {
                 CostCentre = expenseInformation.CostCentre,
@@ -52,11 +52,10 @@ namespace SerkoExpense.Infrastructure
 
                 return XDocument.Parse(data).Element(dataTag)?.Value;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                throw new InvalidDataException(
-                    "One or more elements may not be missing or not closed tagged correctly.",
-                    exception.InnerException);
+                throw new InvalidEmailDataException(
+                    "One or more elements may be missing or tags not closed correctly.");
             }
         }
     }
